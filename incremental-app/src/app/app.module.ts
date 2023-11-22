@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+import { IncrementalMainComponent } from './incremental-main/incremental-main.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    IncrementalMainComponent
   ],
   imports: [
     BrowserModule
