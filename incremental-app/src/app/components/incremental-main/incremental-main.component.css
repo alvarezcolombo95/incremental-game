@@ -1,0 +1,13 @@
+.main-card {
+    max-width: 300px;
+    margin: 15px;
+  }
+  
+  .main-header-image {
+    background-image: url('../../../assets/bcra-small.png');
+    background-size: cover;
+  }
+
+  .subtitle {
+    font-weight:bold;
+  }
