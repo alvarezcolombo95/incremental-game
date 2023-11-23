@@ -1,4 +1,4 @@
-import { HostListener, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { SaveServiceService } from './save-service.service';
 
 @Injectable({
@@ -28,10 +28,6 @@ export class IncrementalMainService {
     return this.pesos;
   }
 
-  //this saves on refresh or tab close
-  @HostListener('window:beforeunload', ['$event'])
-  unloadNotification($event: any) {
-    this.saveService.saveGameState(this.pesos);
-  }
+  
 
 }

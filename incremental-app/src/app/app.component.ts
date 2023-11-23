@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
+import { IncrementalMainService } from './services/incremental-main.service';
+import { SaveServiceService } from './services/save-service.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'incremental-app';
+
+  constructor(private IncrementalMain: IncrementalMainService, private saveService: SaveServiceService) {}
+
+  //this saves on refresh or tab close
+  @HostListener('window:beforeunload', ['$event'])
+  unloadNotification($event: any) {
+    this.saveService.saveGameState(this.IncrementalMain.getPesos());
+  }
+
 }
+
+
+
