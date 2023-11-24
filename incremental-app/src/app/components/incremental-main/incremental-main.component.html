@@ -7,8 +7,8 @@
     </mat-card-header>
     
     <mat-card-content>
-            <p class="subtitle">Reservas</p>
-            <p>Pesos: ${{pesos}}</p>
+            <p class="subtitle">Reservas </p>
+            <p class="pesos">$ {{pesos}}</p>
             <br>
     </mat-card-content>
 
@@ -19,7 +19,21 @@
     <mat-card-actions>        
         <p><button type="button" (click)="buttonPrintPesos(1)" mat-raised-button>$1</button></p>
         <p><button type="button" (click)="buttonPrintPesos(10)" mat-raised-button>$10</button></p>
-        <p><button type="button" (click)="buttonReset()" mat-raised-button>Reset</button></p>        
+        <p><button type="button" (click)="buttonDeleteSave()" mat-raised-button>Reset</button></p>     
     </mat-card-actions>
+
+    <div class="printer-section">
+        <mat-card-content>
+            <p>Impresora: {{printer.level}}</p>
+            <p>Productividad: ${{printer.level}}/seg</p>
+        </mat-card-content>
+
+        <mat-card-actions>        
+            <p><button [disabled]="!enableComprarImpresora()"  type="button" (click)="buttonComprarImpresora(1)" mat-raised-button>Comprar Impresora (${{printerPrice}}) </button></p>
+            <!--<p><button type="button" mat-raised-button>Aumentar Productividad</button></p>-->
+        </mat-card-actions>
+    </div>
+
+
   </mat-card>
   

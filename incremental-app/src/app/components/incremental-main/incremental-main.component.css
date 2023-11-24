@@ -1,5 +1,5 @@
 .main-card {
-    max-width: 300px;
+    max-width: 350px;
     margin: 15px;
   }
   
@@ -10,4 +10,8 @@
 
   .subtitle {
     font-weight:bold;
+  }
+
+  .pesos{
+    font-size: x-large;
   }

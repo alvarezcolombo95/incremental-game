@@ -15,7 +15,8 @@ export class AppComponent {
   //this saves on refresh or tab close
   @HostListener('window:beforeunload', ['$event'])
   unloadNotification($event: any) {
-    this.saveService.saveGameState(this.IncrementalMain.getPesos());
+    this.saveService.saveGameState(this.IncrementalMain.getStats());
+    console.log("The game was saved!")
   }
 
 }

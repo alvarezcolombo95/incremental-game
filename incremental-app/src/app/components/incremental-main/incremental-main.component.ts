@@ -15,20 +15,53 @@ export class IncrementalMainComponent {
   // C O N S T R U C T O R
   constructor(private IncrementalMain: IncrementalMainService) { }
 
-  // M E T H O D S
+  // N G   O N   I N I T
+  ngOnInit(): void{
+    setInterval(() => this.IncrementalMain.printMoney(), 1000)
+  } 
+
+  // G E T T E R S
   get pesos()
   {
-    return this.IncrementalMain.getPesos();
+    return this.IncrementalMain.getPesos()
   }
 
+  get printer()
+  {
+    return this.IncrementalMain.getPrinter()
+  }
+
+  get printerPrice()
+  {
+    return Math.round(this.IncrementalMain.getPrinter().basePrice + this.IncrementalMain.getPrinter().scaling * this.IncrementalMain.getPrinter().level)
+  }
+
+  // M E T H O D S
+
+  //BUTTONS
   buttonPrintPesos(amount: number)
   {
     this.IncrementalMain.addAmount(amount)
   }
 
+  buttonComprarImpresora(amount: number)
+  {
+    this.IncrementalMain.addPrinter(amount)
+  }
+
+  enableComprarImpresora()
+  {
+    return this.IncrementalMain.availableFunds(this.pesos, this.printerPrice)
+  }
+
   buttonReset()
   {
     this.IncrementalMain.resetAmount()
+  }
+
+  buttonDeleteSave()
+  {
+    this.IncrementalMain.deleteSave()
   }
 
   //commented
