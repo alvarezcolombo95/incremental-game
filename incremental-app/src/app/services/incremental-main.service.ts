@@ -28,6 +28,10 @@ export class IncrementalMainService {
     return this.stats.printer
   }
 
+  getPrinterPrice(){
+    return this.stats.printer.basePrice * Math.pow(this.stats.printer.scaling, this.stats.printer.level)
+  }
+
 
   //////////////////////////////////////////
 
@@ -51,7 +55,7 @@ export class IncrementalMainService {
   }
 
   addPrinter(amount: number){
-    this.payAmount( Math.round(this.stats.printer.basePrice + this.stats.printer.scaling * this.stats.printer.level) )
+    this.payAmount( this.getPrinterPrice() ) 
     this.stats.printer.level++
   }
 
@@ -65,7 +69,7 @@ export class IncrementalMainService {
   }
 
   printMoney(){
-    this.addAmount(this.stats.printer.level)
+    this.addAmount(this.stats.printer.level / 10)
     console.log("Money is being printed!")
   }
 

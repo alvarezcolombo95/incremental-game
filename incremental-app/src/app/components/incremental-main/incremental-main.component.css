@@ -1,17 +1,16 @@
-.main-card {
-    max-width: 350px;
-    margin: 15px;
-  }
-  
-  .main-header-image {
-    background-image: url('../../../assets/bcra-small.png');
-    background-size: cover;
-  }
+.main-header-image {
+  background-image: url('../../../assets/bcra-small.png');
+  background-size: cover;
+}
 
-  .subtitle {
-    font-weight:bold;
-  }
+.subtitle {
+  font-weight:bold;
+}
 
-  .pesos{
-    font-size: x-large;
-  }
+.pesos{
+  font-size: x-large;
+}
+
+.printer-section{
+  font-size: medium;
+}

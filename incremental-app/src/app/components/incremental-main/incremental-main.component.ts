@@ -17,13 +17,18 @@ export class IncrementalMainComponent {
 
   // N G   O N   I N I T
   ngOnInit(): void{
-    setInterval(() => this.IncrementalMain.printMoney(), 1000)
+    setInterval(() => this.IncrementalMain.printMoney(), 100)
   } 
 
   // G E T T E R S
   get pesos()
   {
     return this.IncrementalMain.getPesos()
+  }
+
+  get pesosRounded()
+  {
+    return Math.round(this.IncrementalMain.getPesos()) 
   }
 
   get printer()
@@ -33,7 +38,7 @@ export class IncrementalMainComponent {
 
   get printerPrice()
   {
-    return Math.round(this.IncrementalMain.getPrinter().basePrice + this.IncrementalMain.getPrinter().scaling * this.IncrementalMain.getPrinter().level)
+    return Math.round(this.IncrementalMain.getPrinterPrice()) 
   }
 
   // M E T H O D S

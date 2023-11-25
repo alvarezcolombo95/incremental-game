@@ -21,7 +21,7 @@ export class SaveServiceService {
    return {
      //default values
      pesos: 0,
-     printer: {basePrice: 100, scaling: 1.7, level: 0}
+     printer: {basePrice: 100, scaling: 1.4, level: 0}
    };
   }
   try 
@@ -35,7 +35,7 @@ export class SaveServiceService {
    return {
      //default values
      pesos: 0,
-     printer: {basePrice: 100, scaling: 1.7, level: 0}
+     printer: {basePrice: 100, scaling: 1.4, level: 0}
    };
   }
  }

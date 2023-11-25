@@ -1,0 +1,115 @@
+/* C O N T A I N E R S */
+
+.container-padding{
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+#container-main{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100vh;
+    
+}
+
+#container-left{
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+    height: 100%;
+}
+
+#container-right{
+    display: flex;
+    width: 40%;
+    height: 100%;
+}
+
+#container-left-left{
+    display: flex;
+    width: 30%;
+    height: 100%;
+}
+
+#container-left-right{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    height: 100%;
+}
+
+#container-left-right-top{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 60%;
+}
+
+#container-left-right-bottom{
+    display: flex;
+    width: 100%;
+    height: 40%;
+}
+
+#container-left-right-top-left{
+    display: flex;
+    height: 100%;
+    width: 50%;
+}
+
+#container-left-right-top-right{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 50%;
+}
+
+#container-left-right-top-right-top{
+    display: flex;
+    height: 50%;
+    width: 100%;
+}
+
+#container-left-right-top-right-bottom{
+    display: flex;
+    height: 50%;
+    width: 100%;
+}
+
+/* C O M P O N E N T S */
+
+
+
+#app-incremental-main{
+    min-width: 100%;
+    min-height: 100%;
+}
+
+#app-agro-main{
+    min-width: 100%;
+    min-height: 100%;
+}
+
+#app-futbol-main{
+    min-width: 100%;
+    min-height: 100%;
+}
+
+#app-estado-main{
+    min-width: 100%;
+    min-height: 100%;
+}
+
+#app-afip-main{
+    min-width: 100%;
+    min-height: 100%;
+}
+
+
+/* M I S C */
+
+.borde{
+    border: 0px;
+}
+
