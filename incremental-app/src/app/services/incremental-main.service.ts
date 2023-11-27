@@ -8,8 +8,16 @@ import { timeout } from 'rxjs';
 })
 export class IncrementalMainService {
 
+    constructor(private saveService: SaveServiceService) 
+    {
+      console.log("constructor runs")
+      if(this.stats.agroMain.harvestProgress != 0)
+      {
+        console.log("entra al if")
+        this.growSoy()
+      }
+    }
 
-  constructor(private saveService: SaveServiceService) {}
 
   //gameState
   private stats: GameState = this.saveService.getGameState()
@@ -17,6 +25,7 @@ export class IncrementalMainService {
 
   private growTimeoutId: undefined | ReturnType<typeof setTimeout>;
   private harvestComplete: boolean = false;
+  private allowManualPlantSoy: boolean = true;
 
 
   //////////////////////////////////////////
@@ -64,6 +73,19 @@ export class IncrementalMainService {
     return this.harvestComplete;
   }
 
+  //government
+  getMinisterio(){
+    return this.stats.government.ministerio;
+  }
+
+  getWorker(){
+    return this.stats.government.worker;
+  }
+
+  getPowerPoints(){
+    return this.stats.government.powerPoints;
+  }
+
 
   //////////////////////////////////////////
 
@@ -107,14 +129,14 @@ export class IncrementalMainService {
 
   printMoney(){
     this.addAmount(this.stats.centralBank.printer.level / 10)
-    console.log("Money is being printed!")
   }
 
   //agroMain
   addSoyToQueue(amount: number){
     this.stats.agroMain.soyQueue = this.stats.agroMain.soyQueue + amount;
-    if(this.stats.agroMain.harvestProgress == 0)
+    if(this.stats.agroMain.harvestProgress == 0 && this.allowManualPlantSoy)
     {
+      this.allowManualPlantSoy = false
       this.plantSoy()
     }
   }
@@ -129,18 +151,33 @@ export class IncrementalMainService {
  }
  
  async increaseHarvestProgress(){
+    //increase progress bar
     this.stats.agroMain.harvestProgress = this.stats.agroMain.harvestProgress + this.stats.agroMain.harvestSpeed * 0.1
+
+    //finish
     if(this.stats.agroMain.harvestProgress >= 100){
-        this.stats.agroMain.harvestProgress = 0;
+        //return progress bar to 0
         clearInterval(this.growTimeoutId);
+
+        //pay retenciones
         this.cobrarRetenciones()
+
+        this.stats.agroMain.harvestProgress = 0;
+
+        //display success message and wait 1 second so the progress bar can return to empty position
         this.harvestComplete = true;
-        await new Promise(resolve => setTimeout(resolve,1000));
+        await new Promise(resolve => setTimeout(resolve,1000));        
         this.harvestComplete = false;
+
+        //if theres more soy in the queue, restart process
         if(this.stats.agroMain.soyQueue > 0)
         {
           this.plantSoy()
         }
+        else
+        {
+          this.allowManualPlantSoy = true;
+        }        
     }
  }
 

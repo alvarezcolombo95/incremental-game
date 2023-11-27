@@ -26,9 +26,13 @@ export class SaveServiceService {
         printer: {basePrice: 100, scaling: 1.4, level: 0}},
     agroMain: {
       soyQueue: 0,
-      harvestProgress: 0 ,
+      harvestProgress: 0,
       harvestSpeed: 1,
-      retenciones: 0}
+      retenciones: 1},
+    government: {
+      ministerio: {basePrice: 100, scaling: 1.4, level: 0}, 
+      worker: {basePrice: 100, scaling: 1.4, level: 0}, 
+      powerPoints: 0}
      
    };
   }
@@ -48,9 +52,14 @@ export class SaveServiceService {
       printer: {basePrice: 100, scaling: 1.4, level: 0}},
     agroMain: {
       soyQueue: 0,
-      harvestProgress: 0 ,
+      harvestProgress: 0,
       harvestSpeed: 1,
-      retenciones: 0}
+      retenciones: 1},
+    government: {
+      ministerio: {basePrice: 100, scaling: 1.4, level: 0}, 
+      worker: {basePrice: 100, scaling: 1.4, level: 0}, 
+      powerPoints: 0}
+       
    };
   }
  }

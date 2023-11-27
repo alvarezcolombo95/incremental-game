@@ -1,7 +1,7 @@
-import { Printer } from './printer'
+import { Upgradable } from './upgradable'
 
 export interface CentralBank {
     pesos: number;
     dolares: number;
-    printer: Printer;
+    printer: Upgradable;
 }

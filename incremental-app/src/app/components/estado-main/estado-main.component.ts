@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { IncrementalMainService } from 'src/app/services/incremental-main.service';
 
 @Component({
   selector: 'app-estado-main',
@@ -6,5 +7,23 @@ import { Component } from '@angular/core';
   styleUrls: ['./estado-main.component.css']
 })
 export class EstadoMainComponent {
+
+  constructor(private IncrementalMain: IncrementalMainService) {
+    
+  }
+
+  get ministerio(){
+    return this.IncrementalMain.getMinisterio()
+  }
+
+  get worker(){
+    return this.IncrementalMain.getWorker()
+  }
+
+  get powerPoints(){
+    return this.IncrementalMain.getPowerPoints()
+  }
+
+  
 
 }

@@ -12,10 +12,6 @@ export class AgroMainComponent {
     
   }
 
-  ngOnInit(): void{
-    //hacer funcion que mueva de a 1 la barra de progreso
-  }
-
   // G E T T E R S 
 
   get soyQueue(){
@@ -28,6 +24,10 @@ export class AgroMainComponent {
 
   get harvestSpeed(){
     return this.IncrementalMain.getHarvestSpeed()
+  }
+
+  get harvestSpeedSeconds(){
+    return Math.round( 100 / this.IncrementalMain.getHarvestSpeed() )
   }
 
   get retenciones(){
