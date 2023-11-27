@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { GameState } from '../game-state'
+import { GameState } from '../interfaces/game-state'
 
 @Injectable({
  providedIn: 'root'
@@ -20,8 +20,16 @@ export class SaveServiceService {
     console.log("Entro a !stats")
    return {
      //default values
-     pesos: 0,
-     printer: {basePrice: 100, scaling: 1.4, level: 0}
+    centralBank: {
+        pesos: 0, 
+        dolares: 0, 
+        printer: {basePrice: 100, scaling: 1.4, level: 0}},
+    agroMain: {
+      soyQueue: 0,
+      harvestProgress: 0 ,
+      harvestSpeed: 1,
+      retenciones: 0}
+     
    };
   }
   try 
@@ -34,8 +42,15 @@ export class SaveServiceService {
    console.error('Error parsing game state:', error);
    return {
      //default values
-     pesos: 0,
-     printer: {basePrice: 100, scaling: 1.4, level: 0}
+    centralBank: {
+      pesos: 0, 
+      dolares: 0, 
+      printer: {basePrice: 100, scaling: 1.4, level: 0}},
+    agroMain: {
+      soyQueue: 0,
+      harvestProgress: 0 ,
+      harvestSpeed: 1,
+      retenciones: 0}
    };
   }
  }

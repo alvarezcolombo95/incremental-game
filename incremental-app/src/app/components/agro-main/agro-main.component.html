@@ -1,18 +1,36 @@
 <mat-card class="main-card">
     <mat-card-header>
       <div mat-card-avatar class="main-header-image"></div>
-      <mat-card-title>Agricultura</mat-card-title>
-      <mat-card-subtitle>y Ganaderia</mat-card-subtitle>
+      <mat-card-title>Agricultura y Ganaderia</mat-card-title>
+      <mat-card-subtitle>Provincia de Buenos Aires</mat-card-subtitle>
     </mat-card-header>
-    
+
     <mat-card-content>
-            <p>Soja</p>
+            <p><span>soyQueue: {{soyQueue}} </span></p>
+            <mat-progress-bar mode="determinate" value="{{harvestProgress}}"></mat-progress-bar>
+            <p>harvestProgress: {{harvestProgress}}</p>
     </mat-card-content>
 
 
-    <mat-card-actions>        
-        <p><button type="button" mat-raised-button>Plantar Soja</button></p>
+    <mat-card-actions> 
+      <p>       
+        <span><button type="button" (click)="buttonAddSoy(1)" mat-raised-button>Plantar Soja</button></span>
+        <span *ngIf="harvestComplete" style="color: green;">harvest completed! + {{retenciones}} dolares!</span>
+      </p>
     </mat-card-actions>
+
+    <mat-card-content>
+      <p>
+        <span>Retenciones: {{retenciones}} </span>
+        <span><button type="button" (click)="buttonSubirRetenciones(1)" mat-raised-button>Subir Retenciones</button></span>
+      </p>
+      <p>
+        <span>harvestSpeed: {{harvestSpeed}} </span>
+        <span><button type="button" (click)="buttonUpgradeSpeed(1)" mat-raised-button>Upgrade Harvest Speed</button></span>
+      </p>
+    </mat-card-content>
+
+
 </mat-card>
   
 

@@ -26,9 +26,19 @@ export class IncrementalMainComponent {
     return this.IncrementalMain.getPesos()
   }
 
+  get dolares()
+  {
+    return this.IncrementalMain.getDolares()
+  }
+
   get pesosRounded()
   {
     return Math.round(this.IncrementalMain.getPesos()) 
+  }
+
+  get dolaresRounded()
+  {
+    return Math.round(this.IncrementalMain.getDolares())
   }
 
   get printer()
@@ -57,11 +67,6 @@ export class IncrementalMainComponent {
   enableComprarImpresora()
   {
     return this.IncrementalMain.availableFunds(this.pesos, this.printerPrice)
-  }
-
-  buttonReset()
-  {
-    this.IncrementalMain.resetAmount()
   }
 
   buttonDeleteSave()

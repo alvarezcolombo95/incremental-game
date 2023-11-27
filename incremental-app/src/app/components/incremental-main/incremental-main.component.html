@@ -9,6 +9,7 @@
     <mat-card-content>
             <p class="subtitle">Reservas </p>
             <p class="pesos">$ {{pesosRounded}}</p>
+            <p class="dolares">USD {{dolaresRounded}}</p>
             <br>
     </mat-card-content>
 
@@ -18,9 +19,9 @@
 
     <mat-card-actions>        
         <p><button type="button" (click)="buttonPrintPesos(1)" mat-raised-button>$1</button></p>
-        <p><button type="button" (click)="buttonPrintPesos(10)" mat-raised-button>$10</button></p>
-        <p><button type="button" (click)="buttonPrintPesos(100)" mat-raised-button>$100</button></p>
-        <p><button type="button" (click)="buttonDeleteSave()" mat-raised-button>Reset</button></p>     
+        <p><button type="button" (click)="buttonPrintPesos(1000)" mat-raised-button>$100</button></p>
+        <p><button type="button" (click)="buttonPrintPesos(10000000)" mat-raised-button>$10000000</button></p>
+        <p><button type="button" (click)="buttonDeleteSave()" mat-raised-button>Reset</button></p>
     </mat-card-actions>
 
     <div class="printer-section">

@@ -32,7 +32,7 @@ import { AfipMainComponent } from './components/afip-main/afip-main.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    
+    MatProgressBarModule,
     MatSlideToggleModule,
     MatButtonModule,
     MatCardModule,

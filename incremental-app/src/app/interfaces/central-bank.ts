@@ -1,6 +1,7 @@
 import { Printer } from './printer'
 
-export interface GameState {
+export interface CentralBank {
     pesos: number;
+    dolares: number;
     printer: Printer;
 }
