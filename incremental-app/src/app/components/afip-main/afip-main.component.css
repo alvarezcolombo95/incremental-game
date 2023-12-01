@@ -1,4 +1,11 @@
 .main-header-image {
     background-image: url('../../../assets/afip_logo_a.png');
     background-size: cover;
-  }
+}
+
+
+.center-content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

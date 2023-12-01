@@ -16,26 +16,20 @@
 #container-left{
     display: flex;
     flex-direction: row;
-    width: 60%;
-    height: 100%;
-}
-
-#container-right{
-    display: flex;
-    width: 40%;
+    width: 55%;
     height: 100%;
 }
 
 #container-left-left{
     display: flex;
-    width: 30%;
+    width: 33%;
     height: 100%;
 }
 
 #container-left-right{
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 67%;
     height: 100%;
 }
 
@@ -77,6 +71,73 @@
     width: 100%;
 }
 
+
+
+#container-right{
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    height: 100%;
+}
+
+#container-right-top{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 50%;
+}
+
+#container-right-bottom{
+    display: flex;
+    width: 100%;
+    height: 50%;
+}
+
+#container-right-top-left{
+    display: flex;
+    width: 40%;
+    height: 100%;
+}
+
+#container-right-bottom-left{
+    display: flex;
+    width: 63%;
+    height: 100%;
+}
+
+#container-right-bottom-right{
+    display: flex;
+    flex-direction: column;
+    width: 37%;
+    height: 100%;
+}
+
+#container-right-bottom-right-top{
+    display: flex;
+    width: 100%;
+    height: 50%;
+}
+
+#container-right-bottom-right-bottom{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 50%;
+}
+
+#container-right-bottom-right-bottom-top{
+    display: flex;
+    width: 100%;
+    height: 40%;
+}
+
+#container-right-bottom-right-bottom-bottom{
+    display: flex;
+    width: 100%;
+    height: 60%;
+}
+
+
 /* C O M P O N E N T S */
 
 
@@ -107,6 +168,11 @@
 }
 
 #app-fmi-main{
+    min-width: 100%;
+    min-height: 100%;
+}
+
+#app-speech-bubble{
     min-width: 100%;
     min-height: 100%;
 }

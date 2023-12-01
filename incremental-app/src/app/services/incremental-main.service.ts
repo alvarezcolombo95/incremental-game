@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { SaveServiceService } from './save-service.service';
 import { GameState } from '../interfaces/game-state'
 import { timeout } from 'rxjs';
+import { Upgradable } from '../interfaces/upgradable';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +11,14 @@ export class IncrementalMainService {
 
     constructor(private saveService: SaveServiceService) 
     {
-      console.log("constructor runs")
+      //restart soy production
       if(this.stats.agroMain.harvestProgress != 0)
       {
-        console.log("entra al if")
         this.growSoy()
+        this.harvestComplete = false;
+        this.allowManualPlantSoy = false;
+        this.sunText = ''
+        this.sunBubble = false;
       }
     }
 
@@ -22,10 +26,15 @@ export class IncrementalMainService {
   //gameState
   private stats: GameState = this.saveService.getGameState()
 
+  //component blockers
 
   private growTimeoutId: undefined | ReturnType<typeof setTimeout>;
   private harvestComplete: boolean = false;
   private allowManualPlantSoy: boolean = true;
+
+  //sun comments
+  private sunText: string = ''
+  private sunBubble: boolean = false;
 
 
   //////////////////////////////////////////
@@ -33,6 +42,14 @@ export class IncrementalMainService {
   // G E T T E R S
   getStats(){
     return this.stats;
+  }
+
+  getSunText(){
+    return this.sunText;
+  }
+
+  getSunBubble(){
+    return this.sunBubble;
   }
 
   //centralBank
@@ -44,15 +61,44 @@ export class IncrementalMainService {
     return this.stats.centralBank.dolares;
   }
 
+  getBilleteLevel(){
+    return this.stats.centralBank.billeteLevel
+  }
+
+  getBilleteArray(){
+    return this.stats.centralBank.billeteArray
+  }
+
+  getCurrentBillete(){
+    return this.stats.centralBank.billeteArray[this.stats.centralBank.billeteLevel.level]
+  }
+
   getPrinter(){
     return this.stats.centralBank.printer
   }
 
   getPrinterPrice(){
-    return this.stats.centralBank.printer.basePrice * Math.pow(this.stats.centralBank.printer.scaling, this.stats.centralBank.printer.level)
+    return Math.round( this.stats.centralBank.printer.basePrice * Math.pow(this.stats.centralBank.printer.scaling, this.stats.centralBank.printer.level) )
+  }
+
+  getPrinterEff(){
+    return this.stats.centralBank.printerEff
+  }
+
+  getPrinterEffPrice(){
+    return Math.round( this.stats.centralBank.printerEff.basePrice * Math.pow(this.stats.centralBank.printerEff.scaling, this.stats.centralBank.printerEff.level) )
+  }
+
+  getPesosProduction(){
+    //printer level * billete actual * printerEff level (este ultimo podria ser eliminado)
+    return this.stats.centralBank.printer.level * this.getCurrentBillete() * this.stats.centralBank.printerEff.level
   }
 
   //agroMain
+  getLockAgroMain(){
+    return this.stats.agroMain.componentLock
+  }
+
   getSoyQueue(){
     return this.stats.agroMain.soyQueue
   }
@@ -65,8 +111,16 @@ export class IncrementalMainService {
     return this.stats.agroMain.harvestSpeed
   }
 
+  getHarvestSpeedPrice(){
+    return Math.round( this.stats.agroMain.harvestSpeed.basePrice * Math.pow(this.stats.agroMain.harvestSpeed.scaling, this.stats.agroMain.harvestSpeed.level) )
+  }
+
   getRetenciones(){
     return this.stats.agroMain.retenciones;
+  }
+
+  getRetencionesPrice(){
+    return Math.round( this.stats.agroMain.retenciones.basePrice * Math.pow(this.stats.agroMain.retenciones.scaling, this.stats.agroMain.retenciones.level) )
   }
 
   getHarvestComplete(){
@@ -74,16 +128,101 @@ export class IncrementalMainService {
   }
 
   //government
+  getLockGovernment(){
+    return this.stats.government.componentLock
+  }
+
   getMinisterio(){
     return this.stats.government.ministerio;
+  }
+
+  getMinisterioPrice(){
+    return  Math.round(this.stats.government.ministerio.basePrice * Math.pow(this.stats.government.ministerio.scaling, this.stats.government.ministerio.level))
   }
 
   getWorker(){
     return this.stats.government.worker;
   }
 
+  getWorkerLimit(){
+    return this.stats.government.ministerio.level * 50
+  }
+
+  getWorkerCost(){
+    //cada worker cuesta 0.05 pesos por segundo * el billete actual
+    return (this.stats.government.worker * (this.getCurrentBillete()*0.05))
+  }
+
   getPowerPoints(){
     return this.stats.government.powerPoints;
+  }
+
+  //afip
+  getLockAfip(){
+    return this.stats.afipMain.componentLock
+  }
+
+  getImpuesto(){
+    return this.stats.afipMain.impuesto
+  }
+
+  getImpuestoPrice(){
+    return this.calculatePrice(this.stats.afipMain.impuesto)
+  }
+
+  getValor(){
+    return this.stats.afipMain.valor
+  }
+
+  getRecaudacion(){
+    return Math.floor(this.getImpuesto().level * (this.getWorkerCost() * 0.01)) 
+  }
+
+  //fmi
+  getLockFmi(){
+    return this.stats.fmiMain.componentLock
+  }
+
+  getDeuda(){
+    return this.stats.fmiMain.deuda
+  }
+
+  getIntereses(){
+    return this.stats.fmiMain.intereses
+  }
+
+  //futbol
+  getLockFutbolMain(){
+    return this.stats.futbolMain.componentLock
+  }
+
+  getWorldCups(){
+    return this.stats.futbolMain.worldCups
+  }
+
+
+  //////////////////////////////////////////
+
+  // C O M P O N E N T   U N L O C K E R S
+
+  unlockAfip(){
+    this.stats.afipMain.componentLock = false;
+  }
+
+  unlockAgro(){
+    this.stats.agroMain.componentLock = false;
+  }
+
+  unlockGovernment(){
+    this.stats.government.componentLock = false;
+  }
+
+  unlockFmi(){
+    this.stats.fmiMain.componentLock = false;
+  }
+
+  unlockFutbol(){
+    this.stats.futbolMain.componentLock = false;
   }
 
 
@@ -94,14 +233,31 @@ export class IncrementalMainService {
   deleteSave(){
     this.saveService.removeGameState()
     this.stats = this.saveService.getGameState()
+
+    clearInterval(this.growTimeoutId);
+    this.harvestComplete = false;
+    this.allowManualPlantSoy = true;
+  }
+
+  calculatePrice(upgradable: Upgradable)
+  {
+    return Math.floor(upgradable.basePrice * Math.pow(upgradable.scaling, upgradable.level))
+  }
+
+  async sunSays(text: string){
+    this.sunText = text
+    this.sunBubble = true;
+    await new Promise(resolve => setTimeout(resolve,3000)); 
+    this.sunBubble = false;
+    this.sunText = '';
   }
 
   //centralBank
-  addAmount(amount: number){
+  addPesos(amount: number){
     this.stats.centralBank.pesos = this.stats.centralBank.pesos + amount
   }
 
-  payAmount(amount: number){
+  payPesos(amount: number){
     this.stats.centralBank.pesos = this.stats.centralBank.pesos - amount
   }
 
@@ -113,9 +269,14 @@ export class IncrementalMainService {
     this.stats.centralBank.dolares = this.stats.centralBank.dolares - amount
   }
 
-  addPrinter(amount: number){
-    this.payAmount( this.getPrinterPrice() ) 
+  addPrinter(){
+    this.payPesos( this.getPrinterPrice() ) 
     this.stats.centralBank.printer.level++
+  }
+
+  upgradePrinterEff(){
+    this.payPesos(this.getPrinterEffPrice())
+    this.stats.centralBank.printerEff.level = this.stats.centralBank.printerEff.level + 1
   }
 
   availableFunds(funds: number, price: number){
@@ -128,7 +289,11 @@ export class IncrementalMainService {
   }
 
   printMoney(){
-    this.addAmount(this.stats.centralBank.printer.level / 10)
+    this.addPesos( this.getPesosProduction() / 10)
+  }
+
+  upgradeBillete(){
+    this.stats.centralBank.billeteLevel.level = this.stats.centralBank.billeteLevel.level + 1
   }
 
   //agroMain
@@ -152,7 +317,7 @@ export class IncrementalMainService {
  
  async increaseHarvestProgress(){
     //increase progress bar
-    this.stats.agroMain.harvestProgress = this.stats.agroMain.harvestProgress + this.stats.agroMain.harvestSpeed * 0.1
+    this.stats.agroMain.harvestProgress = this.stats.agroMain.harvestProgress + this.stats.agroMain.harvestSpeed.level * 0.1
 
     //finish
     if(this.stats.agroMain.harvestProgress >= 100){
@@ -181,17 +346,88 @@ export class IncrementalMainService {
     }
  }
 
+ //PAGOS DESACTIVADOS !!! REACTIVAR
+
  upgradeHarvestSpeed(amount: number){
-  this.stats.agroMain.harvestSpeed = this.stats.agroMain.harvestSpeed + amount
+  //this.payDollars(this.getHarvestSpeedPrice())
+  this.stats.agroMain.harvestSpeed.level = this.stats.agroMain.harvestSpeed.level + amount
  }
 
  subirRetenciones(amount: number){
-  this.stats.agroMain.retenciones = this.stats.agroMain.retenciones + amount
+  //this.payPowerPoints(this.getRetencionesPrice())
+  this.stats.agroMain.retenciones.level = this.stats.agroMain.retenciones.level + amount
+
+  if(this.stats.agroMain.retenciones.level == 2)
+  {
+    this.sunSays('mi voto es no positivo')
+  }
  }
 
  cobrarRetenciones(){
-  this.stats.centralBank.dolares = this.stats.centralBank.dolares + this.stats.agroMain.retenciones
+  this.stats.centralBank.dolares = this.stats.centralBank.dolares + (this.stats.agroMain.retenciones.level * 15)
  }
+
+ //government
+ addMinisterio(){
+  this.payPesos(this.getMinisterioPrice())
+  this.stats.government.ministerio.level++
+ }
+
+ addWorker(){
+  //no tiene precio de compra sino
+  this.stats.government.worker++
+ }
+
+ removeWorker(){
+  this.stats.government.worker = this.stats.government.worker - 1
+  //pagar indemnizaciones
+  this.payPesos(this.getCurrentBillete() * 10) 
+ }
+
+ payWorkers(amount: number){
+  this.payPesos(amount)
+ }
+
+ earnPowerPoints(amount: number){
+  this.stats.government.powerPoints = this.stats.government.powerPoints + amount
+ }
+
+ payPowerPoints(amount: number){
+  this.stats.government.powerPoints = this.stats.government.powerPoints - amount
+ }
+
+ //afip-main
+ addImpuesto(){
+  //this.payPowerPoints(this.getImpuestoPrice())
+  this.stats.afipMain.impuesto.level++
+ }
+
+ recaudarImpuestos(){
+  this.addPesos(this.getRecaudacion())
+ }
+
+ //fmi-main
+ pedirPrestamo(){
+  this.stats.fmiMain.deuda = this.stats.fmiMain.deuda + this.stats.fmiMain.montoPorPrestamo
+  this.addDollars(this.stats.fmiMain.montoPorPrestamo)
+  this.sunSays('pasaron cosas')
+  
+ }
+
+ saldarPrestamo(){
+  this.stats.fmiMain.deuda = this.stats.fmiMain.deuda - 1
+  this.payDollars(this.stats.fmiMain.montoPorPrestamo)
+ }
+
+ inflarPrestamo(){
+  this.stats.fmiMain.deuda = this.stats.fmiMain.deuda + this.stats.fmiMain.deuda*this.stats.fmiMain.intereses
+ }
+
+
+
+ 
+
+
 
   
 

@@ -1,4 +1,4 @@
-<mat-card class="main-card">
+<mat-card *ngIf="!lockAgroMain" class="main-card">
     <mat-card-header>
       <div mat-card-avatar class="main-header-image"></div>
       <mat-card-title>Agricultura y Ganaderia</mat-card-title>
@@ -7,33 +7,57 @@
 
     <mat-card-content>
             <p>
-              <span>soyQueue: {{soyQueue}} </span>
-              <span>harvestProgress: {{harvestProgress}} </span>
+              <span>Soja por Cosechar: {{soyQueue}} </span>
             </p>
-            <mat-progress-bar class="mat-progress-bar" mode="determinate" value="{{harvestProgress}}" style="color: yellow;"></mat-progress-bar>
+            <mat-progress-bar class="mat-progress-bar" mode="determinate" value="{{harvestProgress}}"></mat-progress-bar>
             
     </mat-card-content>
 
 
     <mat-card-actions> 
       <p>       
-        <span><button type="button" (click)="buttonAddSoy(1)" mat-raised-button>Plantar Soja</button></span>
-        <span *ngIf="harvestComplete" style="color: green;">harvest completed! + {{retenciones}} dolares!</span>
+        <span #tooltip="matTooltip"
+        matTooltip="Precio: $250"
+        matTooltipPosition="right"
+        matTooltipHideDelay="0">
+          <button type="button" [disabled]="!enableAddSoy()" (click)="buttonAddSoy(1)" color="primary" mat-raised-button>Plantar Soja</button>
+        </span>
+        <span *ngIf="harvestComplete" style="color: green;"> + USD {{retencionesGanancia}}</span>
       </p>
     </mat-card-actions>
 
     <mat-card-content>
-      <p>
-        <span>Retenciones: {{retenciones}} </span>
-        <span><button type="button" (click)="buttonSubirRetenciones(1)" mat-raised-button>Subir Retenciones</button></span>
+      <p class="upgrade-content">
+        <span>
+        Retenciones por Cosecha: USD {{retencionesGanancia}} </span>
+        <span fxFlex fxLayoutAlign="end center" #tooltip="matTooltip"
+        matTooltip="Precio: PP {{retencionesPrice}}"
+        matTooltipPosition="left"
+        matTooltipHideDelay="0">
+        <button type="button" (click)="buttonSubirRetenciones()" color="primary" mat-raised-button>Subir Retenciones</button></span>
       </p>
-      <p>
-        <span>harvestSpeed: {{harvestSpeedSeconds}} segundos </span>
-        <span><button type="button" (click)="buttonUpgradeSpeed(1)" mat-raised-button>Upgrade Harvest Speed</button></span>
+
+      <p class="upgrade-content">
+        <span>Velocidad de Cosecha: {{harvestSpeedSeconds}} segundos </span>
+        <span fxFlex fxLayoutAlign="end center" #tooltip="matTooltip"
+        matTooltip="Precio: USD {{harvestSpeedPrice}}"
+        matTooltipPosition="left"
+        matTooltipHideDelay="0">
+        <button type="button" (click)="buttonUpgradeSpeed(1)" color="primary" mat-raised-button>Comprar Cosechadora</button></span>
       </p>
     </mat-card-content>
 
 
 </mat-card>
+
+<div *ngIf="lockAgroMain" class="main-card center-content">
+  <p>
+    
+    <button type="button" (click)="buttonUnlockComponent()" mat-raised-button>
+      <mat-icon aria-hidden="false" aria-label="lock_open" fontIcon="lock_open"></mat-icon>
+      Desbloquear Agricultura y Ganaderia
+    </button>
+  </p>
+</div>
   
 

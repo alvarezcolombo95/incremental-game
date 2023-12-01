@@ -1,17 +1,29 @@
-<mat-card class="main-card">
+<mat-card *ngIf="!lockFmi" class="main-card">
     <mat-card-header>
       <div mat-card-avatar class="main-header-image"></div>
-      <mat-card-title>Fondo Monetario</mat-card-title>
-      <mat-card-subtitle>Internacional</mat-card-subtitle>
+      <mat-card-title>FMI</mat-card-title>
+      <mat-card-subtitle>Fondo Monetario Internacional</mat-card-subtitle>
     </mat-card-header>
     
     <mat-card-content>
-            <p>Deuda:</p>
+            <p>Deuda: <span style="color: red;">${{deuda}}</span> </p>
+            <p>Intereses: {{intereses * 100}}% / min</p>
     </mat-card-content>
 
 
     <mat-card-actions>        
-        <p><button type="button" mat-raised-button>Pedir Prestamo</button></p>
-        <p><button type="button" mat-raised-button>Renegociar Deuda</button></p>
+        <p><button type="button" color="primary" (click)="buttonPedirPrestamo()" style="margin: 3px;" mat-raised-button>Pedir Prestamo</button></p>
+        <p><button type="button" color="primary" (click)="buttonSaldarDeuda()" style="margin: 3px;" mat-raised-button>Saldar Deuda</button></p>
     </mat-card-actions>
 </mat-card>
+
+
+<div *ngIf="lockFmi" class="main-card center-content">
+  <p>
+    
+    <button type="button" (click)="buttonUnlockComponent()" mat-raised-button>
+      <mat-icon aria-hidden="false" aria-label="lock_open" fontIcon="lock_open"></mat-icon>
+      Desbloquear FMI
+    </button>
+  </p>
+</div>

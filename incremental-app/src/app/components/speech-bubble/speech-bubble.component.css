@@ -1,0 +1,29 @@
+#speech-bubble{
+    width: 250px;
+    height: 100px;
+    margin-top: 20px;
+}
+
+#div-speech {
+    position: relative;
+    width: 250px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#speech-text {
+    display: flex;
+    position: absolute;    
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    top: 100;
+    left: 0;
+
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: larger;
+}

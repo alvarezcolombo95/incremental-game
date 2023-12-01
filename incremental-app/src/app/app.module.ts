@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { IncrementalMainComponent } from './components/incremental-main/incremental-main.component';
 import { AgroMainComponent } from './components/agro-main/agro-main.component';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatButtonModule} from '@angular/material/button';
@@ -16,6 +14,11 @@ import { FutbolMainComponent } from './components/futbol-main/futbol-main.compon
 import { FmiMainComponent } from './components/fmi-main/fmi-main.component';
 import { EstadoMainComponent } from './components/estado-main/estado-main.component';
 import { AfipMainComponent } from './components/afip-main/afip-main.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import { SelectAltGovComponent } from './components/select-alt-gov/select-alt-gov.component'; 
+import {MatDialogModule} from '@angular/material/dialog';
+import { ArmyMainComponent } from './components/army-main/army-main.component';
+import { SpeechBubbleComponent } from './components/speech-bubble/speech-bubble.component'; 
 
 
 
@@ -27,7 +30,10 @@ import { AfipMainComponent } from './components/afip-main/afip-main.component';
     FutbolMainComponent,
     FmiMainComponent,
     EstadoMainComponent,
-    AfipMainComponent
+    AfipMainComponent,
+    SelectAltGovComponent,
+    ArmyMainComponent,
+    SpeechBubbleComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +43,9 @@ import { AfipMainComponent } from './components/afip-main/afip-main.component';
     MatButtonModule,
     MatCardModule,
     MatIconModule,
-    MatGridListModule
+    MatGridListModule,
+    MatTooltipModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

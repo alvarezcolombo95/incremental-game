@@ -3,19 +3,21 @@
   background-size: cover;
 }
 
-.subtitle {
-  font-weight:bold;
-}
-
-.pesos{
-  font-size: x-large;
+.button-main-print {
+  width: 320px;
+  height: 60px;
+  font-size: larger;
 }
 
 .dolares{
-  font-size: x-large;
   color: green;
 }
 
 .printer-section{
   font-size: medium;
+}
+
+.center-button { 
+  display: flex;
+  justify-content: center;
 }

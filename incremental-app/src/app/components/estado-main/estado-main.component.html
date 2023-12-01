@@ -1,4 +1,4 @@
-<mat-card class="main-card">
+<mat-card *ngIf="!lockGovernment" class="main-card">
     <mat-card-header>
       <div mat-card-avatar class="main-header-image"></div>
       <mat-card-title>Presidencia de la Nacion</mat-card-title>
@@ -6,14 +6,49 @@
     </mat-card-header>
     
     <mat-card-content>
-            <p></p>
-            <p>Ministerios: {{ministerio.level}}</p>
-            <p>Ñoquis: {{worker.level}}</p>
+            <p class="subtitle">Poder Político</p>
+            <p class="currency">{{powerPointsRounded}}</p>
+
+            <p class="subtitle">Jefatura de Gabinete</p>
+
+            <p class="upgrade-content">
+              <span>Ministerios: {{ministerio.level}}</span>
+              <span fxFlex fxLayoutAlign="end center" #tooltip="matTooltip"
+              matTooltip="Precio: ${{ministerioPrice}}"
+              matTooltipPosition="below"
+              matTooltipHideDelay="0">
+                  <button [disabled]="!allowAbrirMinisterio()" type="button" color="primary" (click)="buttonAbrirMinisterio()" mat-raised-button >Abrir Ministerio</button>
+              </span>          
+            </p>
+          
+          <p class="upgrade-content">
+              <span>Ñoquis: {{worker}} / {{workerLimit}}</span>
+              <span fxFlex fxLayoutAlign="end center">
+                  <button [disabled]="!allowAddWorker()" type="button" color="primary" (click)="buttonAddWorker()" mat-raised-button >Contratar Ñoqui</button>
+              </span>
+          </p>
+
+          <p class="upgrade-content">
+            <span>Sueldos: <span style="color: red;">${{workerCost}}/seg</span></span>
+            <span fxFlex fxLayoutAlign="end center">
+                <button [disabled]="!allowRemoveWorker()" type="button" color="warn" (click)="buttonRemoveWorker()" mat-raised-button >Despedir Ñoqui</button>
+            </span>
+        </p>
+
+          <p>
+            <br>
+            <span><button type="button" class="buttonAltGov" color="primary" (click)="buttonAltGov()" mat-raised-button >Establecer Forma de Gobierno Alternativa</button></span>
+          </p>
     </mat-card-content>
-
-
-    <mat-card-actions>        
-        <p><button type="button" mat-raised-button>Abrir Ministerio</button></p>
-        <p><button type="button" mat-raised-button>Contratar Ñoqui</button></p>
-    </mat-card-actions>
 </mat-card>
+
+
+<div *ngIf="lockGovernment" class="main-card center-content">
+  <p>
+    
+    <button type="button" (click)="buttonUnlockComponent()" mat-raised-button>
+      <mat-icon aria-hidden="false" aria-label="lock_open" fontIcon="lock_open"></mat-icon>
+      Desbloquear Presidencia
+    </button>
+  </p>
+</div>

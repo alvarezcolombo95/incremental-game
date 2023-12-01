@@ -1,0 +1,27 @@
+
+
+#menu-alt-gov {
+    display: flex;
+    flex-direction: row;
+}
+
+.alt-gov-card {
+    max-width: 300px;
+    justify-content: center;
+    margin: 15px;
+}
+
+.alt-gov-title {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.alt-gov-description {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+

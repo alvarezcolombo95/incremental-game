@@ -2,3 +2,14 @@
 background-image: url('../../../assets/estado.png');
 background-size: cover;
 }
+
+.buttonAltGov {
+    width: 310px;
+    height: 50px;
+}
+
+.upgrade-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

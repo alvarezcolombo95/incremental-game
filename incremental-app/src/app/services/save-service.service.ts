@@ -21,47 +21,44 @@ export class SaveServiceService {
    return {
      //default values
     centralBank: {
-        pesos: 0, 
-        dolares: 0, 
-        printer: {basePrice: 100, scaling: 1.4, level: 0}},
+      pesos: 0, 
+      dolares: 0, 
+      printer: {basePrice: 50, scaling: 3, level: 0},
+      printerEff: {basePrice: 50, scaling: 2, level: 1},
+      billeteLevel: {basePrice: 15, scaling: 4, level: 0},
+      billeteArray: [1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000]},
     agroMain: {
+      componentLock: true,
       soyQueue: 0,
       harvestProgress: 0,
-      harvestSpeed: 1,
-      retenciones: 1},
+      harvestSpeed: {basePrice: 50, scaling: 2, level: 2},
+      retenciones: {basePrice: 5, scaling: 2, level: 1}},
     government: {
+      componentLock: true,
       ministerio: {basePrice: 100, scaling: 1.4, level: 0}, 
-      worker: {basePrice: 100, scaling: 1.4, level: 0}, 
-      powerPoints: 0}
+      worker: 0, 
+      powerPoints: 0},
+    afipMain: {
+      impuesto: {basePrice: 5, scaling: 1.4, level: 0},
+      valor: 1,
+      componentLock: true},
+    fmiMain: {
+      componentLock: true,
+      deuda: 0,
+      montoPorPrestamo: 10000000,
+      intereses: 0.01},
+    futbolMain: {
+      componentLock: true,
+      worldCups: 0
+    }
      
    };
   }
-  try 
+  else
   {
     console.log("entro a try")
     return JSON.parse(stats);
   } 
-  catch (error) 
-  {
-   console.error('Error parsing game state:', error);
-   return {
-     //default values
-    centralBank: {
-      pesos: 0, 
-      dolares: 0, 
-      printer: {basePrice: 100, scaling: 1.4, level: 0}},
-    agroMain: {
-      soyQueue: 0,
-      harvestProgress: 0,
-      harvestSpeed: 1,
-      retenciones: 1},
-    government: {
-      ministerio: {basePrice: 100, scaling: 1.4, level: 0}, 
-      worker: {basePrice: 100, scaling: 1.4, level: 0}, 
-      powerPoints: 0}
-       
-   };
-  }
  }
 
  public removeGameState(): void {

@@ -1,16 +1,32 @@
-<mat-card class="main-card">
+<mat-card *ngIf="!lockAfip" class="main-card">
     <mat-card-header>
       <div mat-card-avatar class="main-header-image"></div>
-      <mat-card-title>Administración Federal</mat-card-title>
-      <mat-card-subtitle>de Ingresos Públicos</mat-card-subtitle>
+      <mat-card-title>AFIP</mat-card-title>
+      <mat-card-subtitle>Admin. Federal de Ingresos Públicos</mat-card-subtitle>
     </mat-card-header>
     
     <mat-card-content>
-            <p>Impuestos:</p>
+      <p class="upgrade-content">
+        <span>Impuestos: {{impuesto.level}} </span>
+        <span fxFlex fxLayoutAlign="end center" #tooltip="matTooltip"
+        matTooltip="Precio: PP {{impuestoPrice}}"
+        matTooltipPosition="below"
+        matTooltipHideDelay="0">
+            <button [disabled]="!allowCobrarNuevoImpuesto()"  type="button" (click)="buttonCobrarNuevoImpuesto()" color="primary" mat-raised-button >+</button>
+        </span>
+      </p>
+      <p>
+          <span>Recaudación: <span style="color: green;">${{recaudacion}}/seg</span> </span>          
+      </p>
     </mat-card-content>
-
-
-    <mat-card-actions>        
-        <p><button type="button" mat-raised-button>Cobrar Nuevo Impuesto</button></p>
-    </mat-card-actions>
 </mat-card>
+
+<div *ngIf="lockAfip" class="main-card center-content">
+  <p>
+    
+    <button type="button" (click)="buttonUnlockComponent()" mat-raised-button>
+      <mat-icon aria-hidden="false" aria-label="lock_open" fontIcon="lock_open"></mat-icon>
+      Desbloquear AFIP
+    </button>
+  </p>
+</div>

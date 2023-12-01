@@ -41,6 +41,11 @@ export class IncrementalMainComponent {
     return Math.round(this.IncrementalMain.getDolares())
   }
 
+  get currentBillete()
+  {
+    return this.IncrementalMain.getCurrentBillete()
+  }
+
   get printer()
   {
     return this.IncrementalMain.getPrinter()
@@ -51,22 +56,62 @@ export class IncrementalMainComponent {
     return Math.round(this.IncrementalMain.getPrinterPrice()) 
   }
 
+  get printerEffPrice()
+  {
+    return Math.round(this.IncrementalMain.getPrinterEffPrice())
+  }
+
+  get pesosProduction()
+  {
+    return Math.round(this.IncrementalMain.getPesosProduction())
+  }
+
   // M E T H O D S
 
   //BUTTONS
-  buttonPrintPesos(amount: number)
+  buttonPrintPesos()
   {
-    this.IncrementalMain.addAmount(amount)
+    this.IncrementalMain.addPesos(this.IncrementalMain.getCurrentBillete())
   }
 
-  buttonComprarImpresora(amount: number)
+  buttonPrintPesosFixed(amount: number)
   {
-    this.IncrementalMain.addPrinter(amount)
+    this.IncrementalMain.addPesos(amount)
+  }
+
+  buttonUpgradeBillete()
+  {
+    this.IncrementalMain.upgradeBillete()
+  }
+
+  enableUpgradeBillete()
+  {
+    let enable = true;
+    if(this.IncrementalMain.getBilleteLevel().level == (this.IncrementalMain.getBilleteArray()).length - 1 )
+    {
+      enable = false;
+    }
+    return enable;
+  }
+
+  buttonComprarImpresora()
+  {
+    this.IncrementalMain.addPrinter()
   }
 
   enableComprarImpresora()
   {
     return this.IncrementalMain.availableFunds(this.pesos, this.printerPrice)
+  }
+
+  buttonMejorarImpresoraEff()
+  {
+    this.IncrementalMain.upgradePrinterEff()
+  }
+
+  enableMejorarImpresoraEff()
+  {
+    return this.IncrementalMain.availableFunds(this.pesos, this.printerEffPrice)
   }
 
   buttonDeleteSave()
