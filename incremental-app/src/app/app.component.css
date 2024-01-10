@@ -22,8 +22,21 @@
 
 #container-left-left{
     display: flex;
+    flex-direction: column;
     width: 33%;
     height: 100%;
+}
+
+#container-left-left-top{
+    display: flex;
+    width: 100%;
+    height: 74%;
+}
+
+#container-left-left-bottom{
+    display: flex;
+    width: 100%;
+    height: 26%;
 }
 
 #container-left-right{
@@ -61,13 +74,13 @@
 
 #container-left-right-top-right-top{
     display: flex;
-    height: 50%;
+    height: 40%;
     width: 100%;
 }
 
 #container-left-right-top-right-bottom{
     display: flex;
-    height: 50%;
+    height: 60%;
     width: 100%;
 }
 
@@ -75,107 +88,155 @@
 
 #container-right{
     display: flex;
+    flex-direction: row;
+    width: 45%;
+    height: 100%;
+}
+
+#container-right-left{
+    display: flex;
     flex-direction: column;
     width: 45%;
     height: 100%;
 }
 
-#container-right-top{
+#container-right-right{
+    display: flex;
+    flex-direction: column;
+    width: 55%;
+    height: 100%;
+}
+
+#container-right-left-top{
+    display: flex;
+    width: 100%;
+    height: 40%;
+}
+
+
+
+#container-right-left-bottom{
+    display: flex;
+    width: 100%;
+    height: 60%;
+}
+
+#container-right-right-top{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 60%;
+}
+
+#container-right-right-top-top{
+    display: flex;
+    width: 100%;
+    height: 7%;
+
+}
+
+#container-right-right-top-bottom{
+    display: flex;
+    width: 100%;
+    height: 93%;
+}
+
+#container-right-right-bottom{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 40%;
+}
+
+#container-right-right-bottom-top{
+    display: flex;
+    width: 100%;
+    height: 50%;
+}
+
+#container-right-right-bottom-bottom{
     display: flex;
     flex-direction: row;
     width: 100%;
     height: 50%;
 }
 
-#container-right-bottom{
+#container-right-right-bottom-bottom-left{
     display: flex;
-    width: 100%;
-    height: 50%;
-}
-
-#container-right-top-left{
-    display: flex;
-    width: 40%;
+    width: 35%;
     height: 100%;
 }
 
-#container-right-bottom-left{
+#container-right-right-bottom-bottom-right{
     display: flex;
-    width: 63%;
+    width: 65%;
     height: 100%;
-}
-
-#container-right-bottom-right{
-    display: flex;
-    flex-direction: column;
-    width: 37%;
-    height: 100%;
-}
-
-#container-right-bottom-right-top{
-    display: flex;
-    width: 100%;
-    height: 50%;
-}
-
-#container-right-bottom-right-bottom{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 50%;
-}
-
-#container-right-bottom-right-bottom-top{
-    display: flex;
-    width: 100%;
-    height: 40%;
-}
-
-#container-right-bottom-right-bottom-bottom{
-    display: flex;
-    width: 100%;
-    height: 60%;
 }
 
 
 /* C O M P O N E N T S */
 
-
-
-#app-incremental-main{
+.app{
     min-width: 100%;
     min-height: 100%;
 }
 
-#app-agro-main{
+#incremental-main{
     min-width: 100%;
     min-height: 100%;
 }
 
-#app-futbol-main{
+#agro-main{
     min-width: 100%;
     min-height: 100%;
 }
 
-#app-estado-main{
+#futbol-main{
     min-width: 100%;
     min-height: 100%;
 }
 
-#app-afip-main{
+#estado-main{
     min-width: 100%;
     min-height: 100%;
 }
 
-#app-fmi-main{
+#afip-main{
     min-width: 100%;
     min-height: 100%;
 }
 
-#app-speech-bubble{
+#fmi-main{
     min-width: 100%;
     min-height: 100%;
 }
+
+#space-main{
+    min-width: 100%;
+    min-height: 100%;
+}
+
+#army-main{
+    min-width: 100%;
+    min-height: 100%;
+}
+
+#conicet-main{
+    min-width: 100%;
+    min-height: 100%;
+}
+
+#misc-button{
+    min-width: 100%;
+    min-height: 100%;
+}
+
+#speech-bubble{
+    min-width: 100%;
+    min-height: 100%;
+}
+
+
 
 
 /* M I S C */

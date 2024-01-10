@@ -13,7 +13,7 @@
 
     <mat-card-actions>        
         <p><button type="button" color="primary" (click)="buttonPedirPrestamo()" style="margin: 3px;" mat-raised-button>Pedir Prestamo</button></p>
-        <p><button type="button" color="primary" (click)="buttonSaldarDeuda()" style="margin: 3px;" mat-raised-button>Saldar Deuda</button></p>
+        <p><button [disabled]="!allowSaldarDeuda()" type="button" color="primary" (click)="buttonSaldarDeuda()" style="margin: 3px;" mat-raised-button>Saldar Deuda</button></p>
     </mat-card-actions>
 </mat-card>
 

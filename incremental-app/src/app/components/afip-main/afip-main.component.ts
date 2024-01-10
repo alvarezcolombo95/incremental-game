@@ -35,13 +35,14 @@ export class AfipMainComponent {
   }
 
   buttonCobrarNuevoImpuesto(){
+    this.IncrementalMain.payPowerPoints(this.impuestoPrice)
     this.IncrementalMain.addImpuesto()
   }
 
   allowCobrarNuevoImpuesto(){
     let allow = false
     
-    if(this.IncrementalMain.availableFunds(this.IncrementalMain.getPowerPoints(), this.IncrementalMain.getImpuestoPrice()))
+    if(this.impuesto.level < 100 && this.IncrementalMain.availableFunds(this.IncrementalMain.getPowerPoints(), this.IncrementalMain.getImpuestoPrice()))
     {
       allow = true;
     }

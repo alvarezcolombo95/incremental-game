@@ -42,4 +42,13 @@ export class FmiMainComponent {
     this.IncrementalMain.saldarPrestamo()
   }
 
+  allowSaldarDeuda(){
+    let enable = true;
+      if(this.IncrementalMain.getDolares() <= this.IncrementalMain.getDeuda())
+      {
+        enable = false;
+      }
+      return enable; 
+  }
+
 }

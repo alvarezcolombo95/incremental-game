@@ -15,6 +15,10 @@ export class AgroMainComponent {
   // G E T T E R S 
   get lockAgroMain(){
     return this.IncrementalMain.getLockAgroMain()
+  }  
+  
+  get componentPrice(){
+    return 150;
   }
 
   get soyQueue(){
@@ -56,7 +60,27 @@ export class AgroMainComponent {
 
   // B U T T O N S
   buttonUnlockComponent(){
+    this.IncrementalMain.payPesos(this.componentPrice)
     this.IncrementalMain.unlockAgro()
+  }
+
+  displayButtonUnlock(){
+    let display = false;
+    if(this.IncrementalMain.getPrinter().level >= 2)
+    {
+      display = true;
+    }
+
+    return display;
+  }
+
+  allowButtonUnlock(){
+    let allow = false;
+    if(this.IncrementalMain.availableFunds(this.IncrementalMain.getPesos(), this.componentPrice))
+    {
+      allow = true;
+    }
+    return allow;
   }
 
   buttonAddSoy(amount: number){

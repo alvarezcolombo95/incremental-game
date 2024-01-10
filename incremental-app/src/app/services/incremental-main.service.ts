@@ -91,6 +91,7 @@ export class IncrementalMainService {
 
   getPesosProduction(){
     //printer level * billete actual * printerEff level (este ultimo podria ser eliminado)
+    //esto es lo que deberia ganar cada 1 segundo
     return this.stats.centralBank.printer.level * this.getCurrentBillete() * this.stats.centralBank.printerEff.level
   }
 
@@ -200,6 +201,21 @@ export class IncrementalMainService {
     return this.stats.futbolMain.worldCups
   }
 
+  //army
+  getLockArmyMain(){
+    return this.stats.armyMain.componentLock
+  }
+
+  //space
+  getLockSpaceMain(){
+    return this.stats.spaceMain.componentLock
+  }
+
+  //space
+  getLockConicetMain(){
+    return this.stats.conicetMain.componentLock
+  }
+
 
   //////////////////////////////////////////
 
@@ -219,10 +235,23 @@ export class IncrementalMainService {
 
   unlockFmi(){
     this.stats.fmiMain.componentLock = false;
+    this.sunSays('pasaron cosas')
   }
 
   unlockFutbol(){
     this.stats.futbolMain.componentLock = false;
+  }
+
+  unlockArmy(){
+    this.stats.armyMain.componentLock = false;
+  }
+
+  unlockSpace(){
+    this.stats.spaceMain.componentLock = false;
+  }
+
+  unlockConicet(){
+    this.stats.conicetMain.componentLock = false;
   }
 
 
@@ -293,6 +322,7 @@ export class IncrementalMainService {
   }
 
   upgradeBillete(){
+    this.payPowerPoints(this.calculatePrice(this.stats.centralBank.billeteLevel))
     this.stats.centralBank.billeteLevel.level = this.stats.centralBank.billeteLevel.level + 1
   }
 
@@ -410,17 +440,18 @@ export class IncrementalMainService {
  pedirPrestamo(){
   this.stats.fmiMain.deuda = this.stats.fmiMain.deuda + this.stats.fmiMain.montoPorPrestamo
   this.addDollars(this.stats.fmiMain.montoPorPrestamo)
-  this.sunSays('pasaron cosas')
+  this.sunSays('bruh')
   
  }
 
- saldarPrestamo(){
-  this.stats.fmiMain.deuda = this.stats.fmiMain.deuda - 1
-  this.payDollars(this.stats.fmiMain.montoPorPrestamo)
+ saldarPrestamo(){  
+  this.payDollars(this.stats.fmiMain.deuda)
+  this.stats.fmiMain.deuda = 0
  }
 
+
  inflarPrestamo(){
-  this.stats.fmiMain.deuda = this.stats.fmiMain.deuda + this.stats.fmiMain.deuda*this.stats.fmiMain.intereses
+  this.stats.fmiMain.deuda = this.stats.fmiMain.deuda + Math.round(this.stats.fmiMain.deuda*this.stats.fmiMain.intereses) 
  }
 
 

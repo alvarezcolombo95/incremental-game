@@ -10,12 +10,32 @@ import { SelectAltGovComponent } from '../select-alt-gov/select-alt-gov.componen
 })
 export class EstadoMainComponent {
 
+  private intervalId1: any
+  private intervalId2: any
+
   constructor(private IncrementalMain: IncrementalMainService, private dialog: MatDialog) {}
 
   // N G   O N   I N I T
   ngOnInit(): void{
-    setInterval(() => this.IncrementalMain.payWorkers(this.IncrementalMain.getWorkerCost() * 10), 10000)
-    setInterval(() => this.IncrementalMain.earnPowerPoints(parseFloat((this.IncrementalMain.getWorker() * 0.1).toFixed(2))), 1000)
+    this.startInterval()
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        this.stopInterval();
+      } else {
+        this.startInterval();
+      }
+    });
+  }
+  
+  startInterval(){
+    this.intervalId1 = setInterval(() => this.IncrementalMain.payWorkers(this.IncrementalMain.getWorkerCost() * 10), 10000);
+    this.intervalId2 = setInterval(() => this.IncrementalMain.earnPowerPoints(parseFloat((this.IncrementalMain.getWorker() * 0.001).toFixed(2))), 100)
+  }
+
+  stopInterval(){
+    clearInterval(this.intervalId1);
+    clearInterval(this.intervalId2);
   }
 
   
@@ -23,7 +43,11 @@ export class EstadoMainComponent {
   // G E T T E R S
   get lockGovernment(){
     return this.IncrementalMain.getLockGovernment()
-  } 
+  }
+  
+  get componentPrice(){
+    return 100;
+  }
 
   get ministerio(){
     return this.IncrementalMain.getMinisterio()
@@ -45,6 +69,10 @@ export class EstadoMainComponent {
     return this.IncrementalMain.getWorkerCost()
   }
 
+  get workerCostRounded(){
+    return this.IncrementalMain.getWorkerCost().toFixed(2)
+  }
+
   get powerPoints(){
     return this.IncrementalMain.getPowerPoints()
   }
@@ -54,7 +82,27 @@ export class EstadoMainComponent {
   }
 
   buttonUnlockComponent(){
+    this.IncrementalMain.payPesos(this.componentPrice)
     this.IncrementalMain.unlockGovernment()
+  }
+
+  displayButtonUnlock(){
+    let display = false;
+    if(this.IncrementalMain.getPrinter().level >= 2)
+    {
+      display = true;
+    }
+
+    return display;
+  }
+
+  allowButtonUnlock(){
+    let allow = false;
+    if(this.IncrementalMain.availableFunds(this.IncrementalMain.getPesos(), this.componentPrice))
+    {
+      allow = true;
+    }
+    return allow;
   }
 
   buttonAbrirMinisterio(){

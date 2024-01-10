@@ -11,27 +11,36 @@
 
     <div id="container-left">
 
-        <div id="container-left-left" class="container-padding">
-            <app-incremental-main id="app-incremental-main"></app-incremental-main>
+        <div id="container-left-left" >
+            <div id="container-left-left-top" class="container-padding">
+                <app-incremental-main id="incremental-main" class="app"></app-incremental-main>
+            </div>
+
+            <div id="container-left-left-bottom" class="container-padding">
+                
+                <app-fmi-main id="fmi-main" class="app"></app-fmi-main>
+            </div>
+            
         </div>
         <div id="container-left-right">
             <div id="container-left-right-top">
                 <div id="container-left-right-top-left" class="container-padding">
-                    <app-estado-main id="app-estado-main"></app-estado-main>
+                    <app-estado-main id="estado-main" class="app"></app-estado-main>
                 </div>
 
                 <div id="container-left-right-top-right">
                     <div id="container-left-right-top-right-top" class="container-padding"> 
-                        <app-afip-main id="app-afip-main"></app-afip-main>
+                        <app-afip-main id="afip-main" class="app"></app-afip-main>
                     </div>
-                    <div id="container-left-right-top-right-top" class="container-padding">
-                        <app-fmi-main id="app-fmi-main"></app-fmi-main>
+                    <div id="container-left-right-top-right-bottom" class="container-padding">
+                        <app-conicet-main id="conicet-main" class="app"></app-conicet-main>
                     </div>
                     
                 </div>
             </div>
             <div id="container-left-right-bottom" class="container-padding">
-                <app-agro-main id="app-agro-main"></app-agro-main>
+                <app-agro-main id="agro-main" class="app"></app-agro-main>
+                
             </div>
         </div>
     
@@ -39,24 +48,36 @@
     </div>
     
     <div id="container-right">
-        <div id="container-right-top" class="container-padding">
-            <div id="container-right-top-left">
-                <app-futbol-main id="app-futbol-main"></app-futbol-main>
+        <div id="container-right-left" >
+            <div id="container-right-left-top" class="container-padding">
+                <app-futbol-main id="futbol-main" class="app"></app-futbol-main>
+            </div>
+            <div id="container-right-left-bottom" class="container-padding">
+                <app-space-main id="space-main" class="app"></app-space-main>
             </div>
         </div>
-        <div id="container-right-bottom">
-            <div id="container-right-bottom-left">
-
+        <div id="container-right-right">
+            <div id="container-right-right-top" >
+                <div id="container-right-right-top-top" class="container-padding">
+                    <app-misc-button id="misc-button" class="app"></app-misc-button>
+                </div>
+                <div id="container-right-right-top-bottom" class="container-padding">
+                    <app-army-main id="army-main" class="app"></app-army-main>
+                </div>
+                
             </div>
-            <div id="container-right-bottom-right">
-                <div id="container-right-bottom-right-top"></div>
-                <div id="container-right-bottom-right-bottom">
-                    <div id="container-right-bottom-right-bottom-top">
+            <div id="container-right-right-bottom">
+                <div id="container-right-right-bottom-top">
+
+                </div>
+                <div id="container-right-right-bottom-bottom">
+                    <div id="container-right-right-bottom-bottom-left">
 
                     </div>
-                    <div id="container-right-bottom-right-bottom-bottom">
-                        <app-speech-bubble id="app-speech-bubble"></app-speech-bubble>
+                    <div id="container-right-right-bottom-bottom-right" class="container-padding">
+                        <app-speech-bubble id="speech-bubble" class="app"></app-speech-bubble>
                     </div>
+                    
                 </div>
             </div>
         </div>

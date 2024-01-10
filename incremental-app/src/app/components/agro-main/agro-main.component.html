@@ -50,10 +50,13 @@
 
 </mat-card>
 
+<!--add "&& displayButtonUnlock()""-->
 <div *ngIf="lockAgroMain" class="main-card center-content">
-  <p>
-    
-    <button type="button" (click)="buttonUnlockComponent()" mat-raised-button>
+  <p #tooltip="matTooltip"
+  matTooltip="Precio: ${{componentPrice}}"
+  matTooltipPosition="below"
+  matTooltipHideDelay="0">    
+    <button [disabled]="!allowButtonUnlock()" type="button" (click)="buttonUnlockComponent()" mat-raised-button>
       <mat-icon aria-hidden="false" aria-label="lock_open" fontIcon="lock_open"></mat-icon>
       Desbloquear Agricultura y Ganaderia
     </button>

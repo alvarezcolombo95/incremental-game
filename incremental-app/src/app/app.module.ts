@@ -18,7 +18,11 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import { SelectAltGovComponent } from './components/select-alt-gov/select-alt-gov.component'; 
 import {MatDialogModule} from '@angular/material/dialog';
 import { ArmyMainComponent } from './components/army-main/army-main.component';
-import { SpeechBubbleComponent } from './components/speech-bubble/speech-bubble.component'; 
+import { SpeechBubbleComponent } from './components/speech-bubble/speech-bubble.component';
+import { SpaceMainComponent } from './components/space-main/space-main.component';
+import { ConicetMainComponent } from './components/conicet-main/conicet-main.component';
+import { ExitConfirmationComponent } from './components/exit-confirmation/exit-confirmation.component';
+import { MiscButtonComponent } from './components/misc-button/misc-button.component'; 
 
 
 
@@ -33,7 +37,11 @@ import { SpeechBubbleComponent } from './components/speech-bubble/speech-bubble.
     AfipMainComponent,
     SelectAltGovComponent,
     ArmyMainComponent,
-    SpeechBubbleComponent
+    SpeechBubbleComponent,
+    SpaceMainComponent,
+    ConicetMainComponent,
+    ExitConfirmationComponent,
+    MiscButtonComponent
   ],
   imports: [
     BrowserModule,

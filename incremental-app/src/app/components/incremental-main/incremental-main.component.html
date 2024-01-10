@@ -7,24 +7,16 @@
     </mat-card-header>
     
     <mat-card-content>
-            <p class="subtitle">Reservas </p>
-            <p class="currency">$ {{pesosRounded}}</p>
-            <p class="currency dolares">USD {{dolaresRounded}}</p>
-            <br>
-    </mat-card-content>
-
-    <mat-card-content>
-        <p class="subtitle">Imprimir</p>
+        <p class="subtitle">Reservas </p>
+        <p class="currency">$ {{pesosRounded}}</p>
+        <p class="currency dolares">USD {{dolaresRounded}}</p>
+        <p class="subtitle" style="margin-top: 35px;">Imprimir</p>
     </mat-card-content>
 
     <mat-card-actions>        
         <p>
             <button type="button" (click)="buttonPrintPesos()" class="button-main-print" color="primary" mat-raised-button>${{currentBillete}}</button>
         </p>
-    </mat-card-actions>
-
-    <mat-card-actions class="center-button">      
-        <p ><button type="button" [disabled]="!enableUpgradeBillete()" (click)="buttonUpgradeBillete()" color="primary" mat-raised-button>Sacar Nuevo Billete</button></p>
     </mat-card-actions>
 
     
@@ -47,14 +39,14 @@
                 <span><button [disabled]="!enableMejorarImpresoraEff()"  type="button" (click)="buttonMejorarImpresoraEff()" mat-raised-button>+</button></span> 
                 -->
             </p>
+            <p class="center-button" style="margin-top: 40px;" #tooltip="matTooltip"
+            matTooltip="Precio: PP {{billetePrice}}"
+            matTooltipPosition="below"
+            matTooltipHideDelay="0">
+                <button [disabled]="!enableUpgradeBillete()" (click)="buttonUpgradeBillete()" color="primary"  mat-raised-button>Sacar Nuevo Billete</button>
+            </p>
         </mat-card-content>
     </div>
-
-    <mat-card-actions>      
-        <p><button type="button" (click)="buttonDeleteSave()" mat-raised-button>Reset</button></p>        
-        <p><button type="button" (click)="buttonPrintPesosFixed(1000)" mat-raised-button>$1000</button></p>
-        <p><button type="button" (click)="buttonPrintPesosFixed(10000000)" mat-raised-button>$10000000</button></p>
-    </mat-card-actions>
 
 
   </mat-card>

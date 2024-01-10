@@ -6,7 +6,7 @@
     </mat-card-header>
     
     <mat-card-content>
-            <p class="subtitle">Poder Político</p>
+            <p class="subtitle">Poder Político (PP)</p>
             <p class="currency">{{powerPointsRounded}}</p>
 
             <p class="subtitle">Jefatura de Gabinete</p>
@@ -29,7 +29,7 @@
           </p>
 
           <p class="upgrade-content">
-            <span>Sueldos: <span style="color: red;">${{workerCost}}/seg</span></span>
+            <span>Sueldos: <span style="color: red;">${{workerCostRounded}}/seg</span></span>
             <span fxFlex fxLayoutAlign="end center">
                 <button [disabled]="!allowRemoveWorker()" type="button" color="warn" (click)="buttonRemoveWorker()" mat-raised-button >Despedir Ñoqui</button>
             </span>
@@ -42,11 +42,13 @@
     </mat-card-content>
 </mat-card>
 
-
-<div *ngIf="lockGovernment" class="main-card center-content">
-  <p>
-    
-    <button type="button" (click)="buttonUnlockComponent()" mat-raised-button>
+<!--add "&& displayButtonUnlock()""-->
+<div *ngIf="lockGovernment" class="main-card center-content" >
+  <p #tooltip="matTooltip"
+  matTooltip="Precio: ${{componentPrice}}"
+  matTooltipPosition="below"
+  matTooltipHideDelay="0">    
+    <button [disabled]="!allowButtonUnlock()" type="button" (click)="buttonUnlockComponent()" mat-raised-button>
       <mat-icon aria-hidden="false" aria-label="lock_open" fontIcon="lock_open"></mat-icon>
       Desbloquear Presidencia
     </button>

@@ -23,7 +23,7 @@ export class SaveServiceService {
     centralBank: {
       pesos: 0, 
       dolares: 0, 
-      printer: {basePrice: 50, scaling: 3, level: 0},
+      printer: {basePrice: 25, scaling: 3, level: 0},
       printerEff: {basePrice: 50, scaling: 2, level: 1},
       billeteLevel: {basePrice: 15, scaling: 4, level: 0},
       billeteArray: [1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000]},
@@ -50,6 +50,15 @@ export class SaveServiceService {
     futbolMain: {
       componentLock: true,
       worldCups: 0
+    },
+    armyMain: {
+      componentLock: true
+    },
+    spaceMain: {
+      componentLock: true
+    },
+    conicetMain: {
+      componentLock: true
     }
      
    };

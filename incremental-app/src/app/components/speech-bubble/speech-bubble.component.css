@@ -1,9 +1,3 @@
-#speech-bubble{
-    width: 250px;
-    height: 100px;
-    margin-top: 20px;
-}
-
 #div-speech {
     position: relative;
     width: 250px;
@@ -11,6 +5,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#speech-bubble{
+    width: 250px;
+    height: 100px;
+    margin-top: 20px;
 }
 
 #speech-text {

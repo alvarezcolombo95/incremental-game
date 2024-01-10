@@ -1,13 +1,13 @@
-<mat-card *ngIf="!lockArmy" class="main-card">
+<mat-card *ngIf="!lockSpace" class="main-card">
     <mat-card-header>
       <div mat-card-avatar class="main-header-image"></div>
-      <mat-card-title>Fuerzas Militares</mat-card-title>
-      <mat-card-subtitle>Ejercito Argentino</mat-card-subtitle>
+      <mat-card-title>CONAE</mat-card-title>
+      <mat-card-subtitle>Comision Nacional de Actividades Espaciales</mat-card-subtitle>
     </mat-card-header>
 </mat-card>
 
 
-<div *ngIf="lockArmy" class="main-card center-content">
+<div *ngIf="lockSpace" class="main-card center-content">
   <p #tooltip="matTooltip"
   matTooltip="Proximamente"
   matTooltipPosition="below"
@@ -15,7 +15,7 @@
     
     <button [disabled]="true" type="button" (click)="buttonUnlockComponent()" mat-raised-button>
       <mat-icon aria-hidden="false" aria-label="lock_open" fontIcon="lock_open"></mat-icon>
-      Desbloquear Ejercito
+      Desbloquear CONAE
     </button>
   </p>
 </div>
