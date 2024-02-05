@@ -58,7 +58,9 @@ export class SaveServiceService {
       componentLock: true
     },
     conicetMain: {
-      componentLock: true
+      componentLock: true,
+      sciencePoints: 0,
+      scientist: 0
     }
      
    };

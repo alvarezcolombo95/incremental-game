@@ -211,9 +211,22 @@ export class IncrementalMainService {
     return this.stats.spaceMain.componentLock
   }
 
-  //space
+  //conicet
   getLockConicetMain(){
     return this.stats.conicetMain.componentLock
+  }
+
+  getScientist(){
+    return this.stats.conicetMain.scientist
+  }
+
+  getSciencePoints(){
+    return this.stats.conicetMain.sciencePoints
+  }
+
+  getScientistCost(){
+    //cada scientist cuesta 0.10 pesos por segundo * el billete actual
+    return (this.stats.conicetMain.scientist * (this.getCurrentBillete()*0.1))
   }
 
 

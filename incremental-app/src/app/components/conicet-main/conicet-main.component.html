@@ -4,6 +4,28 @@
       <mat-card-title>CONICET</mat-card-title>
       <mat-card-subtitle>Consejo Nac. de Investigaciones Científicas y Técnicas</mat-card-subtitle>
     </mat-card-header>
+
+    <mat-card-content>
+
+      <p class="subtitle">Puntos de Desarrollo</p>
+      <p class="currency">{{sciencePointsRounded}}</p>
+
+      <p class="upgrade-content">
+        <span>Ñoquis: {{scientist}}</span>
+        <span fxFlex fxLayoutAlign="end center">
+            <!--<button [disabled]="!allowAddWorker()" type="button" color="primary" (click)="buttonAddWorker()" mat-raised-button >Contratar Ñoqui</button>-->
+        </span>
+      </p>
+
+      <p class="upgrade-content">
+        <span>Sueldos: <span style="color: red;">${{scientistCostRounded}}/seg</span></span>
+        <span fxFlex fxLayoutAlign="end center">
+            <!--<button [disabled]="!allowRemoveWorker()" type="button" color="warn" (click)="buttonRemoveWorker()" mat-raised-button >Despedir Ñoqui</button>-->
+        </span>
+      </p>
+
+    </mat-card-content>
+
 </mat-card>
 
 
