@@ -30,9 +30,13 @@
 
 
 <div *ngIf="lockConicet" class="main-card center-content">
-  <p>
-    
-    <button type="button" (click)="buttonUnlockComponent()" mat-raised-button>
+  
+  <p #tooltip="matTooltip"
+  matTooltip="Precio: USD {{componentPrice}}"
+  matTooltipPosition="below"
+  matTooltipHideDelay="0">  
+
+    <button [disabled]="!allowButtonUnlock()" type="button" (click)="buttonUnlockComponent()" mat-raised-button>
       <mat-icon aria-hidden="false" aria-label="lock_open" fontIcon="lock_open"></mat-icon>
       Desbloquear CONICET
     </button>

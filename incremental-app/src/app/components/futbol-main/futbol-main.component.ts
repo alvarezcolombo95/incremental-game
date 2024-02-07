@@ -16,7 +16,33 @@ export class FutbolMainComponent {
     return this.IncrementalMain.getLockFutbolMain()
   }
 
+  get componentPrice(){
+    return 1000
+  }
+
+  
+
   buttonUnlockComponent(){
+    this.IncrementalMain.payPesos(this.componentPrice)
     this.IncrementalMain.unlockFutbol()
+  }
+
+  displayButtonUnlock(){
+    let display = false;
+    if(this.IncrementalMain.getPrinter().level >= 5)
+    {
+      display = true;
+    }
+
+    return display;
+  }
+
+  allowButtonUnlock(){
+    let allow = false;
+    if(this.IncrementalMain.availableFunds(this.IncrementalMain.getPesos(), this.componentPrice))
+    {
+      allow = true;
+    }
+    return allow;
   }
 }

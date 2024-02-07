@@ -14,6 +14,10 @@ export class ConicetMainComponent {
     return this.IncrementalMain.getLockConicetMain();
   }
 
+  get componentPrice(){
+    return 1;
+  }
+
   get scientist(){
     return this.IncrementalMain.getScientist()
   }
@@ -35,7 +39,27 @@ export class ConicetMainComponent {
   }
 
   buttonUnlockComponent(){
+    this.IncrementalMain.payDolares(this.componentPrice)
     this.IncrementalMain.unlockConicet()
+  }
+
+  displayButtonUnlock(){
+    let display = false;
+    if(this.IncrementalMain.getMinisterio().level > 0)
+    {
+      display = true;
+    }
+
+    return display;
+  }
+
+  allowButtonUnlock(){
+    let allow = false;
+    if(this.IncrementalMain.availableFunds(this.IncrementalMain.getDolares(), this.componentPrice))
+    {
+      allow = true;
+    }
+    return allow;
   }
 
   buttonAddWorker(){

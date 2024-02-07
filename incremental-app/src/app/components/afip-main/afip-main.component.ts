@@ -30,8 +30,32 @@ export class AfipMainComponent {
     return this.IncrementalMain.getLockAfip()
   }
 
+  get componentPrice(){
+    return 100;
+  }
+
   buttonUnlockComponent(){
-     this.IncrementalMain.unlockAfip()
+    this.IncrementalMain.payPesos(this.componentPrice)
+    this.IncrementalMain.unlockAfip()
+  }
+
+  displayButtonUnlock(){
+    let display = false;
+    if(this.IncrementalMain.getPrinter().level >= 2)
+    {
+      display = true;
+    }
+
+    return display;
+  }
+
+  allowButtonUnlock(){
+    let allow = false;
+    if(this.IncrementalMain.availableFunds(this.IncrementalMain.getPesos(), this.componentPrice))
+    {
+      allow = true;
+    }
+    return allow;
   }
 
   buttonCobrarNuevoImpuesto(){

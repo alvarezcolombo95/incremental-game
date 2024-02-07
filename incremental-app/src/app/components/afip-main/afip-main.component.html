@@ -22,9 +22,12 @@
 </mat-card>
 
 <div *ngIf="lockAfip" class="main-card center-content">
-  <p>
+  <p #tooltip="matTooltip"
+  matTooltip="Precio: ${{componentPrice}}"
+  matTooltipPosition="below"
+  matTooltipHideDelay="0">
     
-    <button type="button" (click)="buttonUnlockComponent()" mat-raised-button>
+    <button [disabled]="!allowButtonUnlock()" type="button" (click)="buttonUnlockComponent()" mat-raised-button>
       <mat-icon aria-hidden="false" aria-label="lock_open" fontIcon="lock_open"></mat-icon>
       Desbloquear AFIP
     </button>

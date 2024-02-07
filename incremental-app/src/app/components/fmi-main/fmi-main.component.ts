@@ -21,6 +21,10 @@ export class FmiMainComponent {
     return this.IncrementalMain.getLockFmi()
   }
 
+  get componentPrice(){
+    return 200;
+  }
+
   get deuda(){
     return this.IncrementalMain.getDeuda()
   }
@@ -31,7 +35,27 @@ export class FmiMainComponent {
 
   // B U T T O N S
   buttonUnlockComponent(){
+    this.IncrementalMain.payPesos(this.componentPrice)
     this.IncrementalMain.unlockFmi()
+  }
+
+  displayButtonUnlock(){
+    let display = false;
+    if(this.IncrementalMain.getPrinter().level >= 3)
+    {
+      display = true;
+    }
+
+    return display;
+  }
+
+  allowButtonUnlock(){
+    let allow = false;
+    if(this.IncrementalMain.availableFunds(this.IncrementalMain.getPesos(), this.componentPrice))
+    {
+      allow = true;
+    }
+    return allow;
   }
 
   buttonPedirPrestamo(){

@@ -303,11 +303,11 @@ export class IncrementalMainService {
     this.stats.centralBank.pesos = this.stats.centralBank.pesos - amount
   }
 
-  addDollars(amount: number){
+  addDolares(amount: number){
     this.stats.centralBank.dolares = this.stats.centralBank.dolares + amount
   }
 
-  payDollars(amount: number){
+  payDolares(amount: number){
     this.stats.centralBank.dolares = this.stats.centralBank.dolares - amount
   }
 
@@ -452,13 +452,13 @@ export class IncrementalMainService {
  //fmi-main
  pedirPrestamo(){
   this.stats.fmiMain.deuda = this.stats.fmiMain.deuda + this.stats.fmiMain.montoPorPrestamo
-  this.addDollars(this.stats.fmiMain.montoPorPrestamo)
+  this.addDolares(this.stats.fmiMain.montoPorPrestamo)
   this.sunSays('bruh')
   
  }
 
  saldarPrestamo(){  
-  this.payDollars(this.stats.fmiMain.deuda)
+  this.payDolares(this.stats.fmiMain.deuda)
   this.stats.fmiMain.deuda = 0
  }
 
