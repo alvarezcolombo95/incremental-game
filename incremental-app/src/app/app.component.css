@@ -50,13 +50,13 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: 60%;
+    height: 63%;
 }
 
 #container-left-right-bottom{
     display: flex;
     width: 100%;
-    height: 40%;
+    height: 37%;
 }
 
 #container-left-right-top-left{
@@ -74,13 +74,13 @@
 
 #container-left-right-top-right-top{
     display: flex;
-    height: 40%;
+    height: 35%;
     width: 100%;
 }
 
 #container-left-right-top-right-bottom{
     display: flex;
-    height: 60%;
+    height: 65%;
     width: 100%;
 }
 

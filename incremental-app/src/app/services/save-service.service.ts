@@ -46,7 +46,7 @@ export class SaveServiceService {
       componentLock: true,
       deuda: 0,
       montoPorPrestamo: 10000000,
-      intereses: 0.01},
+      intereses: 0.0001},
     futbolMain: {
       componentLock: true,
       worldCups: 0

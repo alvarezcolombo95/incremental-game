@@ -8,7 +8,33 @@ import { IncrementalMainService } from 'src/app/services/incremental-main.servic
 })
 export class ConicetMainComponent {
 
+  private intervalId1: any
+  private intervalId2: any
+
   constructor(private IncrementalMain: IncrementalMainService) {}
+
+  // N G   O N   I N I T
+  ngOnInit(): void{
+    this.startInterval()
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        this.stopInterval();
+      } else {
+        this.startInterval();
+      }
+    });
+  }
+  
+  startInterval(){
+    this.intervalId1 = setInterval(() => this.IncrementalMain.payScientists(this.IncrementalMain.getScientistCost() * 10), 10000);
+    this.intervalId2 = setInterval(() => this.IncrementalMain.earnSciencePoints(parseFloat((this.IncrementalMain.getScientist() * 0.001).toFixed(2))), 100)
+  }
+
+  stopInterval(){
+    clearInterval(this.intervalId1);
+    clearInterval(this.intervalId2);
+  }
 
   get lockConicet(){
     return this.IncrementalMain.getLockConicetMain();
@@ -62,26 +88,17 @@ export class ConicetMainComponent {
     return allow;
   }
 
-  buttonAddWorker(){
-    this.IncrementalMain.addWorker()
+  buttonAddScientist(){
+    this.IncrementalMain.addScientist()
   }
 
-  allowAddWorker(){
-    let enable = true;
-    if(this.IncrementalMain.getWorker() >= this.IncrementalMain.getWorkerLimit())
-    {
-      enable = false;
-    }
-    return enable;
+   buttonRemoveScientist(){
+    this.IncrementalMain.removeScientist()
    }
 
-   buttonRemoveWorker(){
-    this.IncrementalMain.removeWorker()
-   }
-
-   allowRemoveWorker(){
+   allowRemoveScientist(){
     let enable = true;
-    if(this.IncrementalMain.getWorker() <= 0)
+    if(this.IncrementalMain.getScientist() <= 0)
     {
       enable = false;
     }

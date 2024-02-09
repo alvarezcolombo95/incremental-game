@@ -13,7 +13,7 @@ export class FmiMainComponent {
   }
 
   ngOnInit(): void{
-    setInterval(() => this.IncrementalMain.inflarPrestamo(), 60000)
+    setInterval(() => this.IncrementalMain.inflarPrestamo(), 1000)
   }
 
   // G E T T E R S 

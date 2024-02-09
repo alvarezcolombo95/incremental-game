@@ -226,7 +226,7 @@ export class IncrementalMainService {
 
   getScientistCost(){
     //cada scientist cuesta 0.10 pesos por segundo * el billete actual
-    return (this.stats.conicetMain.scientist * (this.getCurrentBillete()*0.1))
+    return (this.stats.conicetMain.scientist * (this.getCurrentBillete()*0.25))
   }
 
 
@@ -464,9 +464,32 @@ export class IncrementalMainService {
 
 
  inflarPrestamo(){
-  this.stats.fmiMain.deuda = this.stats.fmiMain.deuda + Math.round(this.stats.fmiMain.deuda*this.stats.fmiMain.intereses) 
+  //cambie el intervalo para que ocurra cada 60 segundos, asique divide la cantidad de intereses ganado para compensar
+  this.stats.fmiMain.deuda = this.stats.fmiMain.deuda + Math.round((this.stats.fmiMain.deuda*this.stats.fmiMain.intereses) ) 
  }
 
+ //conicet-main
+ addScientist(){
+  this.stats.conicetMain.scientist++
+ }
+ 
+ removeScientist(){
+  this.stats.conicetMain.scientist = this.stats.conicetMain.scientist - 1
+  //pagar indemnizaciones
+  this.payPesos(this.getCurrentBillete() * 10) 
+ }
+
+ payScientists(amount: number){
+  this.payPesos(amount)
+ }
+
+ earnSciencePoints(amount: number){
+  this.stats.conicetMain.sciencePoints = this.stats.conicetMain.sciencePoints + amount
+ }
+
+ paySciencePoints(amount: number){
+  this.stats.conicetMain.sciencePoints = this.stats.conicetMain.sciencePoints - amount
+ }
 
 
  
